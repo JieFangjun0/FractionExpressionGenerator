@@ -103,7 +103,8 @@ class FractionExpressionGenerator:
                 continue
 
     def convert_to_latex(self, expression):
-        return re.sub(r'(-?\d+)/(\d+)', r'\\frac{\1}{\2}', expression)
+        #return re.sub(r'(-?\d+)/(\d+)', r'\\frac{\1}{\2}', expression)
+        return re.sub(r'(\d+)/(\d+)', r'\\frac{\1}{\2}', expression)
 
     def generate_practice_and_answers(self, num_of_problems,num_of_operands, filename_prefix,write_to_file=False):
         expression_list = []
@@ -150,5 +151,9 @@ class FractionExpressionGenerator:
         plt.savefig(os.path.join(self.save_path,f'{filename_prefix}答案.png'))
 
 # Example usage:
-generator = FractionExpressionGenerator()
-generator.generate_practice_and_answers(num_of_problems=20,num_of_operands=2,filename_prefix='21')
+generator = FractionExpressionGenerator(save_path="/home/sam/Desktop/题目")
+#generator.generate_practice_and_answers(num_of_problems=10,num_of_operands=2,filename_prefix='25')
+start_prefix = 51
+end_prefix = 70
+for i in range(start_prefix,end_prefix+1):
+    generator.generate_practice_and_answers(num_of_problems=10,num_of_operands=3,filename_prefix=str(i))
